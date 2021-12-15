@@ -9,7 +9,8 @@
 <br/>
 
 ## Stack
-- Vanilla JavaScript + MVC Pattern
+- homepage : Vanilla JavaScript + MVC Pattern
+- admin : Svelte............ only if possible
 - webpack
 - express + mysql
 - AWS EC2
