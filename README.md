@@ -14,6 +14,7 @@
 - webpack
 - express + mysql
 - AWS EC2
+- FE : No External Libraries
 
 <br/>
 
@@ -25,4 +26,7 @@
 5. 상담 게시판
 6. 회원 가입, 로그인, 세션 관리 -> JWT면 충분할듯?
 7. 메인 페이지 : 되도록 멋지게
-8. 공유를 위한 링크 생성
+
+<br/>
+
+### Codes Must be super clean
