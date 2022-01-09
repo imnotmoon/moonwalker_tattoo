@@ -9,7 +9,7 @@
 <br/>
 
 ## Stack
-- homepage : Vanilla JavaScript + MVC Pattern
+- homepage : Vanilla TypeScript + MVC Pattern
 - admin : Svelte............ only if possible
 - webpack
 - express + mysql
