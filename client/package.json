@@ -1,0 +1,30 @@
+{
+  "name": "moonwalker_tattoo",
+  "version": "1.0.0",
+  "description": "## Introduce <p>바닐라 공부도 할 겸 만드는 아빠 타투샵 홈페이지..</p> <p>잘 되면 배포함.</p> <p>SPA로 만들거라 SEO 신경 써줘야 함.</p> <p>시간 날때만 할거라 딱히 완성도 신경쓰지 않음.</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imnotmoon/moonwalker_tattoo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imnotmoon/moonwalker_tattoo/issues"
+  },
+  "homepage": "https://github.com/imnotmoon/moonwalker_tattoo#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.0.0",
+    "mini-css-extract-plugin": "^2.4.6",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.65.0",
+    "webpack-dev-server": "^4.7.2"
+  }
+}
