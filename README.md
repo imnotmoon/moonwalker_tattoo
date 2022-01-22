@@ -11,7 +11,7 @@
 
 ## Stack
 
--   homepage : Remix + TS
+-   homepage : React + TS + vanilla-extract/receipes
 -   admin : Svelte............ only if possible
 -   vite
 -   express + mysql

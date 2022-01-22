@@ -1,8 +1,5 @@
 node_modules
-
-.cache
-.vercel
-.output
-
-public/build
-api/_build
+.DS_Store
+dist
+dist-ssr
+*.local
