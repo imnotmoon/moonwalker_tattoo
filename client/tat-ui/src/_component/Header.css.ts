@@ -14,13 +14,22 @@ export const header = style({
 
 export const logo = style({
 	fontSize: 20,
+	cursor: 'pointer',
 });
 
 export const item = style({
+	color: 'gray',
 	cursor: 'pointer',
 	transition: 'all 0.3s ease',
 	':hover': {
-		color: 'gray',
+		color: 'white',
 		transition: 'all 0.3s ease',
 	},
 });
+
+export const selectedItem = style([
+	item,
+	{
+		color: 'white',
+	},
+]);
