@@ -2,7 +2,7 @@ import React from 'react';
 
 import { style } from '@vanilla-extract/css';
 
-const ImageSkeleton = () => {
+const Skeleton = () => {
 	return <div className={skeleton}></div>;
 };
 
@@ -12,4 +12,4 @@ const skeleton = style({
 	background: 'rgb(75, 75, 75)',
 });
 
-export default ImageSkeleton;
+export default Skeleton;
