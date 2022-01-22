@@ -14,13 +14,15 @@ const Header = () => {
 
 	const onClickItem = (e: React.MouseEvent) => {
 		if (!(e.target instanceof HTMLDivElement)) return;
-		nav((e.target as HTMLDivElement).innerText.trim());
+		const route = (e.target as HTMLDivElement).innerText.trim() as Pages;
+		setCurrentPage(route);
+		nav(route);
 	};
 
 	return (
 		<header className={css.header} onClick={onClickItem}>
 			<span className={css.logo} onClick={onClickLogo}>
-				moonwalker tatoo
+				moonwalker tattoo
 			</span>
 			<section></section>
 			{['archive', 'review', 'contact', 'reservation'].map((route) => (

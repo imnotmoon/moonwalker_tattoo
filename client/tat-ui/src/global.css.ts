@@ -8,3 +8,9 @@ globalStyle('html, body', {
 	fontFamily: 'Montserrat',
 	fontWeight: 300,
 });
+
+globalStyle('a', {
+	color: 'white',
+	textDecoration: 'none',
+	padding: '10px 0',
+});
