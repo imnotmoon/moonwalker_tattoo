@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Archive = () => {
-	return <div>archive</div>;
+	return (
+		<div>
+		</div>
+	);
 };
 
 export default Archive;
