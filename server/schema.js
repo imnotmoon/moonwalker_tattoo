@@ -1,5 +1,8 @@
 import Graphql from 'graphql';
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { Model } from 'sequelize';
+
+import { db } from './index.js';
 
 const dateValue = (value) => {
   const date = new Date(value);
@@ -61,12 +64,8 @@ export const schema = makeExecutableSchema({
   typeDefs: typeDefs,
   resolvers: {
     Query: {
-      reviews: function(parent, args, context) {
-        return [
-          {id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'},
-          {id: 2, title: 'test2', content: 'test2', upload_date: '2022-02-02'},
-          {id: 3, title: 'test3', content: 'test3', upload_date: '2022-02-02'}
-        ];
+      reviews: async function(parent, args, context) {
+        return await db.POST.findAll();
       },
       posts: function(parent, args, context) {
         return [{id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'}];

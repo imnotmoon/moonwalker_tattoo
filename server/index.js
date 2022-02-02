@@ -1,17 +1,43 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import Sequelize from "sequelize";
 
 import { graphqlHTTP } from 'express-graphql';
 import Graphql from 'graphql';
 
 import * as gqlTypes from './schema.js';
+import { dbconfig } from "./db.config.js";
+
+import POST from './models/POST.js';
 
 const PORT = 8000;
 const schema = new Graphql.GraphQLSchema({ query: gqlTypes.queryType });
 const app = express();
 
 app.use(cors());
+
+const sequelize = new Sequelize(dbconfig.DB, dbconfig.USER, dbconfig.PASSWORD, {
+  host: dbconfig.HOST, 
+  dialect: dbconfig.dialect,
+  operatorAliases:false, 
+  pool: {
+    ...dbconfig.pool
+  }}
+);
+
+export const db = {};
+db.POST = POST(sequelize, Sequelize);
+
+(async function() {
+  try{
+    await sequelize.authenticate();
+    console.log("connected");
+  } catch {
+    console.log("error connecting");
+  }
+  
+})();
 
 app.use(
   '/api',
