@@ -1,8 +1,7 @@
 import express from 'express';
+import cors from 'cros';
 import path from 'path';
 import mysql from 'mysql2';
-import dotenv from 'donenv';
-dotenv.config();
 
 import { graphqlHTTP } from 'express-graphql';
 import Graphql from 'graphql';
@@ -19,12 +18,15 @@ const connection = mysql.createConnection({
   password: process.DATABASE_PASSWORD,
   database: process.DATABASE_DBNAME,
   port: process.DATABASE_PORT
-})
+});
+
+app.use(cors());
 
 app.use(
   '/api',
   graphqlHTTP({
-    schema,
+    schema: gqlTypes.schema,
+    query: gqlTypes.Query,
     graphiql: true,
   })
 );

@@ -1,7 +1,7 @@
 import Graphql from 'graphql';
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from '@graphql-tools/schema'
 
-export const dateValue = (value) => {
+const dateValue = (value) => {
   const date = new Date(value);
   if (date.toString().toLowerCase() === 'invalid date') return null;
   return date;
@@ -9,10 +9,13 @@ export const dateValue = (value) => {
 
 const typeDefs = /* GraphQL */ `
   type Query {
-    viewer: Post!
+    reviews: [Review]
+    photos: [Photo]
+    posts: [Post]
+    notices: [Notice]
   }
 
-  type Image {
+  type Photo {
     id: ID!
     post_id: Int!
     review_id: Int!
@@ -33,7 +36,7 @@ const typeDefs = /* GraphQL */ `
     title: String!
     content: String
     upload_date: String
-    images: [Image!]
+    photos: [Photo!]
   }
 
   type Review {
@@ -41,19 +44,39 @@ const typeDefs = /* GraphQL */ `
     title: String!
     content: String
     upload_date: String
-    images: [Image!]
+    photos: [Photo!]
   }
 `
 
-const QUERY = /* GraphQL */ `
-  
+export const QUERY = /* GraphQL */ `
+  query hello {
+    viewer {
+      title
+      content
+    }
+  }
 `
 
-const schema = makeExecutableSchema({
+export const schema = makeExecutableSchema({
   typeDefs: typeDefs,
   resolvers: {
     Query: {
-
-    }
+      reviews: function(parent, args, context) {
+        return [
+          {id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'},
+          {id: 2, title: 'test2', content: 'test2', upload_date: '2022-02-02'},
+          {id: 3, title: 'test3', content: 'test3', upload_date: '2022-02-02'}
+        ];
+      },
+      posts: function(parent, args, context) {
+        return [{id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'}];
+      },
+      notices: function(parent, args, context) {
+        return [{id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'}];
+      },
+      photos: function(parent, args, context) {
+        return [{ id: 1, name: 'test', path: 'test/test', order: 1}];
+      },
+    },
   }
 })
