@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const auto = new SequelizeAuto(
-  'nodejs',
+  process.env.DATABASE_DBNAME,
   process.env.DATABASE_USERNAME,
   process.env.DATABASE_PASSWORD,
   {
