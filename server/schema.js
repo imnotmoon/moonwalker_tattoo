@@ -65,16 +65,16 @@ export const schema = makeExecutableSchema({
   resolvers: {
     Query: {
       reviews: async function(parent, args, context) {
+        return await db.REVIEWS.findAll();
+      },
+      posts: async function(parent, args, context) {
         return await db.POST.findAll();
       },
-      posts: function(parent, args, context) {
-        return [{id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'}];
+      notices: async function(parent, args, context) {
+        return await db.NOTICE.findAll();
       },
-      notices: function(parent, args, context) {
-        return [{id: 1, title: 'test', content: 'test', upload_date: '2022-02-02'}];
-      },
-      photos: function(parent, args, context) {
-        return [{ id: 1, name: 'test', path: 'test/test', order: 1}];
+      photos: async function(parent, args, context) {
+        return await db.PHOTOS.findAll();
       },
     },
   }

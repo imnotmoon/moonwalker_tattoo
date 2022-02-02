@@ -10,6 +10,9 @@ import * as gqlTypes from './schema.js';
 import { dbconfig } from "./db.config.js";
 
 import POST from './models/POST.js';
+import NOTICE from './models/NOTICE.js';
+import PHOTO from './models/PHOTO.js';
+import REVIEW from './models/REVIEW.js';
 
 const PORT = 8000;
 const schema = new Graphql.GraphQLSchema({ query: gqlTypes.queryType });
@@ -27,7 +30,10 @@ const sequelize = new Sequelize(dbconfig.DB, dbconfig.USER, dbconfig.PASSWORD, {
 );
 
 export const db = {};
+db.REVIEW = REVIEW(sequelize, Sequelize);
 db.POST = POST(sequelize, Sequelize);
+db.NOTICE = NOTICE(sequelize, Sequelize);
+db.PHOTO = PHOTO(sequelize, Sequelize);
 
 (async function() {
   try{
