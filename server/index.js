@@ -1,80 +1,25 @@
 import express from 'express';
 import path from 'path';
+import mysql from 'mysql2';
+import dotenv from 'donenv';
+dotenv.config();
 
 import { graphqlHTTP } from 'express-graphql';
 import Graphql from 'graphql';
 
+import * as gqlTypes from './schema.js';
+
 const PORT = 8000;
-
-const resolverMap = {
-  Date: new GraphQLScalarType({
-    name: 'Date',
-    description: 'Date Type',
-    serialize: (value) => {
-      const date = new Date(value);
-      if (date.toString().toLowerCase() === 'invalid date') return null;
-      return date;
-    },
-  }),
-};
-
-const imageType = new Graphql.GraphQLObjectType({
-  name: 'IMAGE',
-  fields: {
-    id: { type: Graphql.GraphQLID },
-    post_id: { type: Graphql.GraphQLInt },
-    review_id: { type: Graphql.GrpahQLInt },
-    name: { type: Graphql.GraphQLString },
-    path: { type: Graphql.GraphQLString },
-    order: { type: Graphql.GraphQLInt },
-  },
-});
-
-const noticeType = new Graphql.GraphQLObjectType({
-  name: 'NOTICE',
-  fields: {
-    id: { type: Graphql.GraphQLInt },
-    title: { type: Graphql.GraphQLString },
-    content: { type: Graphql.GraphQLString },
-    upload_date: { type: Graphql.GraphQLString },
-  },
-});
-
-const postType = new Graphql.GraphQLObjectType({
-  name: 'POST',
-  fields: {
-    id: { type: Graphql.GraphQLID },
-    title: { type: Graphql.GraphQLString },
-    content: { type: Graphql.GraphQLString },
-    upload_date: { type: Graphql.GraphQLString },
-  },
-});
-
-const reviewType = new Graphql.GraphQLObjectType({
-  name: 'REVIEW',
-  fields: {
-    id: { type: Graphql.GraphQLID },
-    title: { type: Graphql.GraphQLString },
-    content: { type: Graphql.GraphQLString },
-    upload_date: { type: Graphql.GraphQLString },
-  },
-});
-
-const queryType = new Graphql.GraphQLObjectType({
-  name: 'Query',
-  fields: {
-    review: {
-      type: new Graphql.GraphQLList(reviewType),
-      resolve: () => {
-        return [{ id: 1, title: 'test', content: 'test', upload_date: '2022-02-02' }];
-      },
-    },
-  },
-});
-
-const schema = new Graphql.GraphQLSchema({ query: queryType });
-
+const schema = new Graphql.GraphQLSchema({ query: gqlTypes.queryType });
 const app = express();
+
+const connection = mysql.createConnection({
+  host: process.DATABASE_HOST,
+  user: process.DATABASE_USERNAME,
+  password: process.DATABASE_PASSWORD,
+  database: process.DATABASE_DBNAME,
+  port: process.DATABASE_PORT
+})
 
 app.use(
   '/api',
