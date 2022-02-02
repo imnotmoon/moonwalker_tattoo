@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as css from './Header.css';
 
-type Pages = 'archive' | 'review' | 'contact' | 'reservation' | '/';
+type Pages = 'about' | 'archive' | 'review' | 'contact' | '/';
 
 const Header = () => {
 	const [currentPage, setCurrentPage] = useState<Pages>();
@@ -25,7 +25,7 @@ const Header = () => {
 				moonwalker tattoo
 			</span>
 			<section></section>
-			{['archive', 'review', 'contact', 'reservation'].map((route) => (
+			{['about', 'archive', 'review', 'contact'].map((route) => (
 				<div className={currentPage === route ? css.selectedItem : css.item} key={route}>
 					{route}
 				</div>
