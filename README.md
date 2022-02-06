@@ -11,11 +11,10 @@
 
 ## Stack
 
--   homepage : React + TS + vanilla-extract/receipes
--   admin : Svelte............ only if possible
+-   homepage : React + TS + vanilla-extract
+-   admin : Svelte
 -   vite
 -   express + mysql
--   Vercel..?
 
 <br/>
 
