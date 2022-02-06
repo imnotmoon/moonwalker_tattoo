@@ -3,6 +3,7 @@
   import Auth from './_pages/Auth.svelte';
   import Main from './_pages/Main.svelte';
   import Login from './_pages/Login.svelte';
+  import Post from './_pages/Post.svelte';
 </script>
 
 <svelte:head>
@@ -18,6 +19,9 @@
     <Route path="/">
       <Auth />
       <Main />
+    </Route>
+    <Route>
+      <Post />
     </Route>
 </Router>
 
