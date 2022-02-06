@@ -1,15 +1,19 @@
 <script lang="ts">
-import { writable } from "svelte/store";
-
-  let a = 0;
-  let b = 0;
-  const count = writable(0);
+  import { Router, Route } from 'svelte-navigator';
+  import Auth from './_pages/Auth.svelte';
+  import Main from './_pages/Main.svelte';
+  import Login from './_pages/Login.svelte';
 </script>
 
-<div>
-  <input type="number" bind:value={a} />
-  <input type="number" bind:value={b} />
-</div>
+<Router>
+    <Route path="login">
+      <Login/>
+    </Route>
+    <Route path="main">
+      <Auth />
+      <Main />
+    </Route>
+</Router>
 
 <style>
 </style>

@@ -1,5 +1,5 @@
 <script></script>
 
-<div></div>
+<div>main</div>
 
 <style></style>
