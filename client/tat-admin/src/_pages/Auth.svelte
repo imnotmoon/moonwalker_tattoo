@@ -5,7 +5,7 @@
   
   const cookie = document.cookie;
   // if(!cookie) 
-  navigate('/login');
+  // navigate('/login');
 </script>
 
 <div></div>
