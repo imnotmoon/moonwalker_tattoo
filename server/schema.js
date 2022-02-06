@@ -1,6 +1,4 @@
-import Graphql from 'graphql';
-import { makeExecutableSchema } from '@graphql-tools/schema'
-import { Model } from 'sequelize';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
 import { db } from './index.js';
 
@@ -15,6 +13,7 @@ const typeDefs = /* GraphQL */ `
     reviews: [Review]
     photos: [Photo]
     posts: [Post]
+    post(id: ID): Post
     notices: [Notice]
   }
 
@@ -49,7 +48,7 @@ const typeDefs = /* GraphQL */ `
     upload_date: String
     photos: [Photo!]
   }
-`
+`;
 
 export const QUERY = /* GraphQL */ `
   query hello {
@@ -58,24 +57,28 @@ export const QUERY = /* GraphQL */ `
       content
     }
   }
-`
+`;
 
 export const schema = makeExecutableSchema({
   typeDefs: typeDefs,
   resolvers: {
     Query: {
-      reviews: async function(parent, args, context) {
+      reviews: async function (parent, args, context) {
         return await db.REVIEWS.findAll();
       },
-      posts: async function(parent, args, context) {
+      posts: async function (parent, args, context) {
         return await db.POST.findAll();
       },
-      notices: async function(parent, args, context) {
+      post: async function (parent, args, context) {
+        const { id } = args;
+        return await db.POST.findOne({ where: { id: id } });
+      },
+      notices: async function (parent, args, context) {
         return await db.NOTICE.findAll();
       },
-      photos: async function(parent, args, context) {
+      photos: async function (parent, args, context) {
         return await db.PHOTOS.findAll();
       },
     },
-  }
-})
+  },
+});

@@ -14,5 +14,5 @@ const auto = new SequelizeAuto(
 );
 
 auto.run((error) => {
-  if(error) throw error;
-})
+  if (error) throw error;
+});
