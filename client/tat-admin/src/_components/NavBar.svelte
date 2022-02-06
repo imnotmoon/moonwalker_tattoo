@@ -35,6 +35,7 @@
     text-decoration: none;
     font-size: 1.2rem;
     color: white;
+    margin-bottom: 1rem;
 
     & > div {
       height: 3rem;
@@ -43,10 +44,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      &:last-child{
-        border-top: 1px solid #444;
-      }
+      border-bottom: 1px solid #444;
     }
   }
 
