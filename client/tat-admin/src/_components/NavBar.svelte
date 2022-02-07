@@ -1,27 +1,26 @@
 <script>
-  import { Link, useNavigate } from 'svelte-navigator';
-  const navigate = useNavigate();
+  import { link, push } from 'svelte-spa-router';
+  import { setCookie } from '../utils';
 
   const onClickLogout = () => {
-    document.cookie = '';
-    navigate('/login');
-  }
+    setCookie('auth', false, { 'max-age': -1 });
+    push('/login');
+  };
 </script>
 
 <nav>
   <div>
-    <Link to="/" class="my-link">moonwalker tattoo</Link>
+    <a href="/" class="my-link" use:link>moonwalker tattoo</a>
   </div>
   <div>
     <ul>
-      <Link to="/post" class="my-link">post</Link>
+      <a href="/post" class="my-link" use:link>post</a>
     </ul>
     <button on:click={onClickLogout}>logout</button>
   </div>
 </nav>
 
 <style lang="scss">
-
   :global(.my-link) {
     text-decoration: none;
     color: white;
@@ -49,11 +48,10 @@
   }
 
   button {
-      cursor: pointer;
-      background-color: black;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-    }
-  
+    cursor: pointer;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+  }
 </style>

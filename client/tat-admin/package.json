@@ -20,6 +20,6 @@
     "vite": "^2.7.2"
   },
   "dependencies": {
-    "svelte-navigator": "latest"
+    "svelte-spa-router": "^3.2.0"
   }
 }
