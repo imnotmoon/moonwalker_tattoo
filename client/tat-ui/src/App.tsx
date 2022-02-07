@@ -8,7 +8,7 @@ import About from './_pages/About';
 import { createClient, Provider } from 'urql';
 
 const client = createClient({
-  url: 'http://localhost:8000/api',
+  url: '/api',
 });
 
 function App() {
