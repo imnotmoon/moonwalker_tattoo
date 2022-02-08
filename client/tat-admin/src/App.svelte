@@ -6,26 +6,20 @@
   import Post from './_pages/Post.svelte';
   import { getCookie } from './utils';
 
+  const authCheck = () => {
+    const cookie = getCookie('auth');
+    if (!cookie) return false;
+    return true;
+  };
+
   const routes = {
     '/': wrap({
       component: Main,
-      conditions: [
-        () => {
-          const cookie = getCookie('auth');
-          if (!cookie) return false;
-          return true;
-        },
-      ],
+      conditions: [authCheck],
     }),
     '/post': wrap({
       component: Post,
-      conditions: [
-        () => {
-          const cookie = getCookie('auth');
-          if (!cookie) return false;
-          return true;
-        },
-      ],
+      conditions: [authCheck],
     }),
     '/Login': Login,
   };
