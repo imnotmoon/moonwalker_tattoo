@@ -1,19 +1,34 @@
 <script>
+  import { push } from 'svelte-spa-router';
+
   let id = '';
   let password = '';
-  console.log("login???");
+  console.log('login???');
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const res = await fetch('/api/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ID: id, password }),
+    });
+    if (res.status !== 200) return;
+    push('/');
+  };
 </script>
 
 <div class="root">
-  <form action="post" class="form">
+  <form action="post" class="form" on:submit={onSubmit}>
     <label for="id">
       <span>ID</span>
-      <input type="text" name="id" id="id" bind:value={id}>
+      <input type="text" name="id" id="id" bind:value={id} />
     </label>
     <label for="password">
       <span>Password</span>
-      <input type="password" name="password" id="password" bind:value={password}>
+      <input type="password" name="password" id="password" bind:value={password} />
     </label>
+    <button type="submit" class="hidden">login</button>
   </form>
   <span class="logo">moonwalker tattoo</span>
 </div>
@@ -63,5 +78,9 @@
     position: absolute;
     bottom: 1rem;
     font-size: 1rem;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>

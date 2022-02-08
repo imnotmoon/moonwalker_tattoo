@@ -1,29 +1,44 @@
 <script lang="ts">
-  import { Router, Route } from 'svelte-navigator';
-  import Auth from './_pages/Auth.svelte';
+  import Router, { push } from 'svelte-spa-router';
+  import { wrap } from 'svelte-spa-router/wrap';
   import Main from './_pages/Main.svelte';
   import Login from './_pages/Login.svelte';
   import Post from './_pages/Post.svelte';
+  import { getCookie } from './utils';
+
+  const authCheck = () => {
+    const cookie = getCookie('auth');
+    if (!cookie) return false;
+    return true;
+  };
+
+  const routes = {
+    '/': wrap({
+      component: Main,
+      conditions: [authCheck],
+    }),
+    '/post': wrap({
+      component: Post,
+      conditions: [authCheck],
+    }),
+    '/Login': Login,
+  };
+
+  const conditionsFailed = (event) => {
+    push('/login');
+  };
 </script>
 
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+    rel="stylesheet"
+  />
 </svelte:head>
 
-<Router>
-    <Route path="login">
-      <Login/>
-    </Route>
-    <Route path="/">
-      <Auth />
-      <Main />
-    </Route>
-    <Route>
-      <Post />
-    </Route>
-</Router>
+<Router {routes} on:conditionsFailed={conditionsFailed} />
 
 <style>
   :global(*) {
